@@ -34,6 +34,12 @@ if (people) {
     organiser('Amelie Wührl', 'IT University of Copenhagen', 'https://openreview.net/profile?id=~Amelie_Wuehrl1', 'AW'),
     organiser('Nikolas Vitsakis', 'Profile to be confirmed', '#organisers', 'NV')
   );
+  people.querySelectorAll('img').forEach((image) => {
+    image.src = image.src.replace(
+      'https://raw.githubusercontent.com/cphNLP/cphnlp.github.io/master/img/',
+      '/2025/img/'
+    );
+  });
 }
 
 function organiser(name, affiliation, url, initials, photo) {
