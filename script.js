@@ -17,7 +17,7 @@ document.querySelector('.notice')?.remove();
 
 const novo = document.querySelector('.novo');
 if (novo) {
-  novo.innerHTML = '<img src="https://novonordiskfonden.dk/app/uploads/NNF_Logo_Vertical_Blue-1.png" alt="Novo Nordisk Foundation">';
+  novo.innerHTML = '<img src="https://novonordiskfonden.dk/app/uploads/NNF_Logo_Vertical_Blue-1.png" alt="Novo Nordisk Foundation" width="265" height="265">';
 }
 
 const previousEdition = document.querySelector('.previous a');
