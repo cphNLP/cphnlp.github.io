@@ -31,8 +31,8 @@ if (people) {
     organiser('Mike Zhang', 'University of Copenhagen', 'https://jjzha.github.io/', 'MZ', 'https://jjzha.github.io/mike_zhang.jpg'),
     existing[3], existing[4],
     organiser('Dustin Wright', 'Aalborg University Copenhagen', 'https://dustinbwright.com/', 'DW', 'https://dustinbwright.com/images/DSC02938.jpg'),
-    organiser('Amelie Wührl', 'IT University of Copenhagen', 'https://openreview.net/profile?id=~Amelie_Wuehrl1', 'AW'),
-    organiser('Nikolas Vitsakis', 'Profile to be confirmed', '#organisers', 'NV')
+    organiser('Amelie Wührl', 'IT University of Copenhagen', 'https://pure.itu.dk/en/persons/amelie-w%C3%BChrl/', 'AW'),
+    organiser('Nikolas Vitsakis', 'IT University of Copenhagen', 'https://pure.itu.dk/en/persons/nikolaos-vitsakis/', 'NV')
   );
   people.querySelectorAll('img').forEach((image) => {
     image.src = image.src.replace(
