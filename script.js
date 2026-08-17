@@ -27,7 +27,7 @@ const people = document.querySelector('.people');
 if (people) {
   const existing = [...people.querySelectorAll('a')];
   people.replaceChildren(
-    existing[0], existing[1], existing[2],
+    existing[0], organiser('Desmond Elliott', 'https://elliottd.github.io/', 'DE', 'https://elliottd.github.io/desmond.jpg'), existing[1],
     organiser('Mike Zhang', 'University of Copenhagen', 'https://jjzha.github.io/', 'MZ', 'https://jjzha.github.io/mike_zhang.jpg'),
     organiser('Amelie Wührl', 'IT University of Copenhagen', 'https://pure.itu.dk/en/persons/amelie-w%C3%BChrl/', 'AW', 'https://nlpnorth.github.io/rsrc/amelie.jpg'),
     organiser('Nikolas Vitsakis', 'IT University of Copenhagen', 'https://pure.itu.dk/en/persons/nikolaos-vitsakis/', 'NV', 'https://nlpnorth.github.io/rsrc/nikolas.jpg'), existing[3],
