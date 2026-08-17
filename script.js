@@ -29,10 +29,10 @@ if (people) {
   people.replaceChildren(
     existing[0], existing[1], existing[2],
     organiser('Mike Zhang', 'University of Copenhagen', 'https://jjzha.github.io/', 'MZ', 'https://jjzha.github.io/mike_zhang.jpg'),
-    existing[3], existing[4],
-    organiser('Dustin Wright', 'Aalborg University Copenhagen', 'https://dustinbwright.com/', 'DW', 'https://dustinbwright.com/images/DSC02938.jpg'),
-    organiser('Amelie Wührl', 'IT University of Copenhagen', 'https://pure.itu.dk/en/persons/amelie-w%C3%BChrl/', 'AW'),
-    organiser('Nikolas Vitsakis', 'IT University of Copenhagen', 'https://pure.itu.dk/en/persons/nikolaos-vitsakis/', 'NV')
+    organiser('Amelie Wührl', 'IT University of Copenhagen', 'https://pure.itu.dk/en/persons/amelie-w%C3%BChrl/', 'AW', 'https://nlpnorth.github.io/rsrc/amelie.jpg'),
+    organiser('Nikolas Vitsakis', 'IT University of Copenhagen', 'https://pure.itu.dk/en/persons/nikolaos-vitsakis/', 'NV', 'https://nlpnorth.github.io/rsrc/nikolas.jpg'), existing[3],
+    organiser('Dustin Wright', 'Aalborg University Copenhagen', 'https://dustinbwright.com/', 'DW', 'https://dustinbwright.com/images/DSC02938.jpg'), existing[4]
+
   );
   people.querySelectorAll('img').forEach((image) => {
     image.src = image.src.replace(
