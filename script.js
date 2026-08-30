@@ -49,3 +49,8 @@ function organiser(name, affiliation, url, initials, photo) {
   link.innerHTML = photo ? `<img src="${photo}" alt="${name}">${name}<small>${affiliation}</small>` : `<span class="portrait">${initials}</span>${name}<small>${affiliation}</small>`;
   return link;
 }
+
+const keynoteLink = document.createElement('a');
+keynoteLink.href = '#keynotes';
+keynoteLink.textContent = 'Keynotes';
+nav?.querySelector('a[href="#posters"]')?.before(keynoteLink);
