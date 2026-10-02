@@ -54,3 +54,22 @@ const keynoteLink = document.createElement('a');
 keynoteLink.href = '#keynotes';
 keynoteLink.textContent = 'Keynotes';
 nav?.querySelector('a[href="#posters"]')?.before(keynoteLink);
+
+document.querySelectorAll('.has-popup').forEach((card) => {
+  const trigger = card.querySelector('.speaker-name');
+  const open = () => card.classList.add('show-popup');
+  const close = () => card.classList.remove('show-popup');
+
+  trigger?.addEventListener('pointerenter', open);
+  card.addEventListener('pointerleave', close);
+  trigger?.addEventListener('focus', open);
+  card.addEventListener('focusout', (event) => {
+    if (!card.contains(event.relatedTarget)) close();
+  });
+  trigger?.addEventListener('click', (event) => {
+    if (!card.classList.contains('show-popup')) {
+      event.preventDefault();
+      open();
+    }
+  });
+});
