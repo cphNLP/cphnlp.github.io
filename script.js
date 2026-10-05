@@ -55,21 +55,55 @@ keynoteLink.href = '#keynotes';
 keynoteLink.textContent = 'Keynotes';
 nav?.querySelector('a[href="#posters"]')?.before(keynoteLink);
 
-document.querySelectorAll('.has-popup').forEach((card) => {
-  const trigger = card.querySelector('.speaker-name');
-  const open = () => card.classList.add('show-popup');
-  const close = () => card.classList.remove('show-popup');
+document.querySelectorAll('.has-popup').forEach((card, index) => {
+  const heading = card.querySelector('h3');
+  const popup = card.querySelector('.keynote-popup');
+  const summary = card.querySelector('.keynote-copy > p:last-child');
+  if (!heading || !popup || !summary) return;
 
-  trigger?.addEventListener('pointerenter', open);
-  card.addEventListener('pointerleave', close);
-  trigger?.addEventListener('focus', open);
-  card.addEventListener('focusout', (event) => {
-    if (!card.contains(event.relatedTarget)) close();
-  });
-  trigger?.addEventListener('click', (event) => {
-    if (!card.classList.contains('show-popup')) {
-      event.preventDefault();
-      open();
+  const labels = [...popup.querySelectorAll(':scope > .popup-label')];
+  const talkLabel = labels.find((label) => label.textContent.trim() === 'Talk');
+  const bioLabel = labels.find((label) => label.textContent.trim() === 'Bio');
+  if (talkLabel && bioLabel) {
+    const talkNodes = [];
+    for (let node = talkLabel; node && node !== bioLabel; node = node.nextElementSibling) {
+      talkNodes.push(node);
     }
+    const bioNodes = [];
+    for (let node = bioLabel; node; node = node.nextElementSibling) {
+      bioNodes.push(node);
+    }
+    popup.replaceChildren(...bioNodes, ...talkNodes);
+  }
+
+  const details = document.createElement('div');
+  details.className = 'keynote-details';
+  const trigger = document.createElement('button');
+  trigger.type = 'button';
+  trigger.className = 'keynote-details-trigger';
+  trigger.setAttribute('aria-expanded', 'false');
+  trigger.setAttribute('aria-controls', popup.id || `keynote-talk-details-${index + 1}`);
+  trigger.textContent = 'Bio & Talk';
+  if (!popup.id) popup.id = trigger.getAttribute('aria-controls');
+  summary.after(details);
+  details.append(trigger, popup);
+
+  const open = () => {
+    card.classList.add('show-popup');
+    trigger.setAttribute('aria-expanded', 'true');
+  };
+  const close = () => {
+    card.classList.remove('show-popup');
+    trigger.setAttribute('aria-expanded', 'false');
+  };
+
+  details.addEventListener('pointerenter', open);
+  details.addEventListener('pointerleave', close);
+  trigger.addEventListener('focus', open);
+  details.addEventListener('focusout', (event) => {
+    if (!details.contains(event.relatedTarget)) close();
+  });
+  trigger.addEventListener('click', () => {
+    card.classList.contains('show-popup') ? close() : open();
   });
 });
