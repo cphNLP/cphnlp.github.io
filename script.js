@@ -85,8 +85,14 @@ document.querySelectorAll('.has-popup').forEach((card, index) => {
   trigger.setAttribute('aria-controls', popup.id || `keynote-talk-details-${index + 1}`);
   trigger.textContent = 'Bio & Talk';
   if (!popup.id) popup.id = trigger.getAttribute('aria-controls');
+  const closeButton = document.createElement('button');
+  closeButton.type = 'button';
+  closeButton.className = 'keynote-popup-close';
+  closeButton.setAttribute('aria-label', 'Close bio and talk details');
+  closeButton.textContent = 'Close ×';
   summary.after(details);
   details.append(trigger, popup);
+  popup.prepend(closeButton);
 
   const open = () => {
     card.classList.add('show-popup');
@@ -97,13 +103,17 @@ document.querySelectorAll('.has-popup').forEach((card, index) => {
     trigger.setAttribute('aria-expanded', 'false');
   };
 
-  details.addEventListener('pointerenter', open);
-  details.addEventListener('pointerleave', close);
-  trigger.addEventListener('focus', open);
+  details.addEventListener('pointerenter', (event) => {
+    if (event.pointerType === 'mouse') open();
+  });
+  details.addEventListener('pointerleave', (event) => {
+    if (event.pointerType === 'mouse') close();
+  });
   details.addEventListener('focusout', (event) => {
     if (!details.contains(event.relatedTarget)) close();
   });
   trigger.addEventListener('click', () => {
     card.classList.contains('show-popup') ? close() : open();
   });
+  closeButton.addEventListener('click', close);
 });
